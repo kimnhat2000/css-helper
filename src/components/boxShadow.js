@@ -1,5 +1,11 @@
 import React from 'react';
-import StyleInput from './StyleInput';
+import ShadowStyle from './reusableComponents/shadowStyle';
+import Color from './reusableComponents/color';
+import BorderStyle from './reusableComponents/borderStyle';
+import BoxSize from './reusableComponents/boxSize';
+import BoxTransparency from './reusableComponents/boxTransparency';
+import {Link} from 'react-router-dom';
+import '../style/boxShadow.css';
 
 class BoxShadow extends React.Component{
 	constructor(props){
@@ -59,182 +65,88 @@ class BoxShadow extends React.Component{
             border:`${borderThickness}px solid rgb(${borderRed},${borderGreen},${borderBlue})`,
         }
 		return(
-		<div className='box-shadow-container'>
 
-            <div className='input-value'>
-                <div className='box-shadow-input'>
-                    <StyleInput
-                        name='h-offsetValue'
-                        value={this.state.h_offsetValue}
-                        minVal='-20'
-                        maxVal='20'
-                        inputChange={(value)=>this.setState({h_offsetValue:value})}
+		<div className='box-shadow-container'>    
+            <div className='all-input'>
+                <div className='input-value'>
+                    <ShadowStyle
+                        h_offsetValue={h_offsetValue}
+                        h_offsetValueChange={(v)=>this.setState({h_offsetValue:v})}
+                        v_offsetValue={v_offsetValue}
+                        v_offsetValueChange={(v)=>this.setState({v_offsetValue:v})}
+                        blur={blur}
+                        blurChange={(v)=>this.setState({blur:v})}
+                        spread={spread}
+                        spreadChange={(v)=>this.setState({spread:v})}
+                        borderRadius={borderRadius}
+                        borderRadiusChange={(v)=>this.setState({borderRadius:v})}
                     />
-                    <StyleInput
-                        name='v-offsetValue'
-                        value={this.state.v_offsetValue}
-                        minVal='-20'
-                        maxVal='20'
-                        inputChange={(value)=>this.setState({v_offsetValue:value})}
-                    />
-                    <StyleInput
-                        name='blur'
-                        value={this.state.blur}
-                        minVal='0'
-                        maxVal='20'
-                        inputChange={(value)=>this.setState({blur:value})}
-                    />
-                    <StyleInput
-                        name='spread'
-                        value={this.state.spread}
-                        minVal='0'
-                        maxVal='20'
-                        inputChange={(value)=>this.setState({spread:value})}
-                    />
-                    <StyleInput
-                        name='borderRadius'
-                        value={this.state.borderRadius}
-                        minVal='0'
-                        maxVal='100'
-                        inputChange={(value)=>this.setState({borderRadius:value})}
+                    <Color
+                        name='shadow color'
+                        red={shadowColorRed} green={shadowColorGreen} blue={shadowColorBlue}
+                        redChange={(v)=>this.setState({shadowColorRed:v})} 
+                        greenChange={(v)=>this.setState({shadowColorGreen:v})}
+                        blueChange={(v)=>this.setState({shadowColorGreen:v})}
                     />
                 </div>
 
-                <div className='shadow-color'>
-                    <h3>shadow color</h3>
-                    <StyleInput
-                        name='shadow color Red'
-                        value={this.state.shadowColorRed}
-                        minVal='0'
-                        maxVal='255'
-                        inputChange={(value)=>this.setState({shadowColorRed:value})}
+                <div className='border'>
+                    <BorderStyle
+                        borderThickness={borderThickness}
+                        borderThicknessChange={(v)=>this.setState({borderThickness:v})}
+                        borderRadius={borderRadius}
+                        borderRadiusChange={(v)=>this.setState({borderRadius:v})}
+                        borderRed={borderRed}
+                        borderRedChange={(v)=>this.setState({borderRed:v})}
+                        borderGreen={borderGreen}
+                        borderGreenChange={(v)=>this.setState({borderGreen:v})}
+                        borderBlue={borderBlue}
+                        borderBlueChange={(v)=>this.setState({borderBlue:v})}
                     />
-                    <StyleInput
-                        name='shadow color green'
-                        value={this.state.shadowColorGreen}
-                        minVal='0'
-                        maxVal='255'
-                        inputChange={(value)=>this.setState({shadowColorGreen:value})}
+                </div>
+
+                <div className='box-change'>
+                    <BoxSize
+                        width={width}
+                        widthChange={(v)=>this.setState({width:v})}
+                        height={height}
+                        heightChange={(v)=>this.setState({height:v})}
                     />
-                    <StyleInput
-                        name='shadow color blue'
-                        value={this.state.shadowColorBlue}
-                        minVal='0'
-                        maxVal='255'
-                        inputChange={(value)=>this.setState({shadowColorBlue:value})}
+                    <Color
+                        name='box color'
+                        red={red} green={green} blue={blue}
+                        redChange={(v)=>this.setState({red:v})}
+                        greenChange={(v)=>this.setState({green:v})}
+                        blueChange={(v)=>this.setState({blue:v})}
                     />
-                    
+                    <BoxTransparency
+                        transparency={transparency}
+                        opacity={boxOpacity}
+                        transparencyChange={(v)=>this.setState({transparency:v})}
+                        opacityChange={(v)=>this.setState({boxOpacity:v})}
+                    />   
                 </div>
             </div>
 
-            <div className='box container'>
-
-                <StyleInput
-                    name='box opacity'
-                    value={this.state.boxOpacity}
-                    minVal='0'
-                    maxVal='100'
-                    inputChange={(value)=>this.setState({boxOpacity:value})}
-                />
-
-                <div
-                    style={style}
-                    className='changeBox'
-                />
-
-                <div className='border-style'>
-                    <StyleInput
-                        name='border thickness'
-                        value={this.state.borderThickness}
-                        minVal='-1'
-                        maxVal='30'
-                        inputChange={(value)=>this.setState({borderThickness:value})}
-                    />  
-                    <div className='border-color'>
-                        <h3>border color</h3>
-                        <StyleInput
-                            name='border red'
-                            value={this.state.borderRed}
-                            minVal='0'
-                            maxVal='255'
-                            inputChange={(value)=>this.setState({borderRed:value})}
-                        />
-                        <StyleInput
-                            name='border green'
-                            value={this.state.borderGreen}
-                            minVal='0'
-                            maxVal='255'
-                            inputChange={(value)=>this.setState({borderGreen:value})}
-                        />
-                        <StyleInput
-                            name='border blue'
-                            value={this.state.borderBlue}
-                            minVal='0'
-                            maxVal='255'
-                            inputChange={(value)=>this.setState({borderBlue:value})}
-                        />           
-                    </div>    
-                </div>          
-            </div>
-
-            <div className='box-change'>
-
-                <div className='box-size'>
-                    <h3>box size</h3>
-                    <StyleInput
-                        name='width'
-                        value={this.state.width}
-                        minVal='10'
-                        maxVal='500'
-                        inputChange={(value)=>this.setState({width:value})}
-                    />
-                    <StyleInput
-                        name='height'
-                        value={this.state.height}
-                        minVal='10'
-                        maxVal='500'
-                        inputChange={(value)=>this.setState({height:value})}
-                    />
-
+            <div className='box-text'>
+                <div className='box'>
+                    <div
+                        style={style}
+                    />       
                 </div>
 
-                <div className='change-box-color'>
-                    <h3>box color</h3>
-                    <StyleInput
-                        name='Red'
-                        value={this.state.red}
-                        minVal='0'
-                        maxVal='255'
-                        inputChange={(value)=>this.setState({red:value})}
-                    />
-                    <StyleInput
-                        name='green'
-                        value={this.state.green}
-                        minVal='0'
-                        maxVal='255'
-                        inputChange={(value)=>this.setState({green:value})}
-                    />
-                    <StyleInput
-                        name='blue'
-                        value={this.state.blue}
-                        minVal='0'
-                        maxVal='255'
-                        inputChange={(value)=>this.setState({blue:value})}
-                    />                              
-                </div>
+                <div className='show-style-text'>
+                    <h5>width:{width}px;</h5>
+                    <h5>height:{height}px;</h5>
+                    <h5>box-shadow:{h_offsetValue}px {v_offsetValue}px {blur}px {spread}px rgb({shadowColorRed},{shadowColorGreen},{shadowColorBlue});</h5>
+                    <h5>border-radius: {borderRadius}px;</h5>
+                    <h5>backgroundColor: rgba({red},{green},{blue}, {transparency/100});</h5>
+                    <h5>opacity:{boxOpacity/100};</h5>
+                    <h5>border:{borderThickness}px solid rgb({borderRed},{borderGreen},{borderBlue});</h5>
+                </div> 
+                <Link to='/textShadow'>text shadow</Link>   
+            </div>   
 
-                <div className='background-transparency'>
-                    <h3>background transparency</h3>
-                    <StyleInput
-                        name='transparency'
-                        value={this.state.transparency}
-                        minVal='0'
-                        maxVal='100'
-                        inputChange={(value)=>this.setState({transparency:value})}
-                    />                            
-                </div>
-
-            </div> 
 		</div>
 		)
 	}

@@ -21,7 +21,7 @@ class StyleInput extends React.Component{
         const {name, minVal, maxVal, value}=this.state  
         return(
             <div className='all-inputs'>
-                <h3>{name}</h3>
+                <h4>{name}</h4>
                 <input
                     type='range'
                     min={minVal}

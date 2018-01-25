@@ -1,46 +1,45 @@
 import React from 'react';
-import StyleInput from './StyleInput';
+import StyleInput from './styleInput';
 
-const ShadowInput =({h_offsetValue, v_offsetValue, blur, spread, borderRadius, inputChange})=>{
-    return(
+const ShadowStyle =({
+    h_offsetValue, h_offsetValueChange,
+    v_offsetValue, v_offsetValueChange,
+    blur, blurChange,
+    spread, spreadChange,
+})=>(
+    <div className='shadow-value'>
+        <h3>shadow</h3>
         <div className='box-shadow-input'>
             <StyleInput
                 name='h-offsetValue'
                 value={h_offsetValue}
                 minVal='-20'
                 maxVal='20'
-                inputChange={inputChange}
+                inputChange={h_offsetValueChange}
             />
             <StyleInput
                 name='v-offsetValue'
                 value={v_offsetValue}
                 minVal='-20'
                 maxVal='20'
-                inputChange={inputChange}
+                inputChange={v_offsetValueChange}
             />
             <StyleInput
                 name='blur'
                 value={blur}
                 minVal='0'
                 maxVal='20'
-                inputChange={inputChange}
+                inputChange={blurChange}
             />
             <StyleInput
                 name='spread'
                 value={spread}
                 minVal='0'
                 maxVal='20'
-                inputChange={inputChange}
-            />
-            <StyleInput
-                name='borderRadius'
-                value={borderRadius}
-                minVal='0'
-                maxVal='100'
-                inputChange={inputChange}
+                inputChange={spreadChange}
             />
         </div>
-    )
-}
+    </div>
+)
 
-export default ShadowInput
+export default ShadowStyle
